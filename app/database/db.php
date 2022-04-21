@@ -1,170 +1,128 @@
+<?PHP error_reporting(E_ALL ^ (E_NOTICE | E_WARNING)); ?>
 <?php
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-session_start();
-require('connect.php');
+  $con = new mysqli ("localhost","root","","db_imas") or die(mysqli_error($con));
 
 
 
-function dd($value) // to be deleted
-{
-    echo "<pre>", print_r($value, true), "</pre>";
-    die();
+   function namaBulan($angka){
+	switch ($angka) {
+		case '1':
+			$bulan = "Januari";
+			break;
+		case '2':
+			$bulan = "Februari";
+			break;
+		case '3':
+			$bulan = "Maret";
+			break;
+		case '4':
+			$bulan = "April";
+			break;
+		case '5':
+			$bulan = "Mei";
+			break;
+		case '6':
+			$bulan = "Juni";
+			break;
+		case '7':
+			$bulan = "Juli";
+			break;
+		case '8':
+			$bulan = "Agustus";
+			break;
+		case '9':
+			$bulan = "September";
+		case '10':
+			$bulan = "Oktober";
+			break;
+		case '11':
+			$bulan = "November";
+			break;
+		case '12':
+			$bulan = "Desember";
+			break;
+		default:
+			$bulan = "Tidak ada bulan yang dipilih...";
+			break;
+	}
+
+	return $bulan;
 }
 
-
-function executeQuery($sql, $data)
-{
-    global $conn;
-    $stmt = $conn->prepare($sql);
-    $values = array_values($data);
-    $types = str_repeat('s', count($values));
-    $stmt->bind_param($types, ...$values);
-    $stmt->execute();
-    return $stmt;
-}
-
-
-function selectAll($table, $conditions = [])
-{
-    global $conn;
-    $sql = "SELECT * FROM $table";
-    if (empty($conditions)) {
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-        return $records;
-    } else {
-        $i = 0;
-        foreach ($conditions as $key => $value) {
-            if ($i === 0) {
-                $sql = $sql . " WHERE $key=?";
-            } else {
-                $sql = $sql . " AND $key=?";
-            }
-            $i++;
-        }
-        
-        $stmt = executeQuery($sql, $conditions);
-        $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-        return $records;
-    }
-}
-
-
-function selectOne($table, $conditions)
-{
-    global $conn;
-    $sql = "SELECT * FROM $table";
-
-    $i = 0;
-    foreach ($conditions as $key => $value) {
-        if ($i === 0) {
-            $sql = $sql . " WHERE $key=?";
-        } else {
-            $sql = $sql . " AND $key=?";
-        }
-        $i++;
-    }
-
-    $sql = $sql . " LIMIT 1";
-    $stmt = executeQuery($sql, $conditions);
-    $records = $stmt->get_result()->fetch_assoc();
-    return $records;
-}
-
-
-function create($table, $data)
-{
-    global $conn;
-    $sql = "INSERT INTO $table SET ";
-
-    $i = 0;
-    foreach ($data as $key => $value) {
-        if ($i === 0) {
-            $sql = $sql . " $key=?";
-        } else {
-            $sql = $sql . ", $key=?";
-        }
-        $i++;
-    }
-    
-    $stmt = executeQuery($sql, $data);
-    $id = $stmt->insert_id;
-    return $id;
+function tglIndonesia($tgl){
+	$tanggal = substr($tgl,8,2);
+	$bulan = namaBulan(substr($tgl,5,2));
+	$tahun = substr($tgl,0,4);
+	return $tanggal.' '.$bulan.' '.$tahun;		 
 }
 
 
 
-function update($table, $id, $data)
-{
-    global $conn;
-    $sql = "UPDATE $table SET ";
+// function untuk menampilkan nama hari ini dalam bahasa indonesia
+// di buat oleh malasngoding.com
 
-    $i = 0;
-    foreach ($data as $key => $value) {
-        if ($i === 0) {
-            $sql = $sql . " $key=?";
-        } else {
-            $sql = $sql . ", $key=?";
-        }
-        $i++;
-    }
+function hari_ini(){
+	$hari = date ("D");
 
-    $sql = $sql . " WHERE id=?";
-    $data['id'] = $id;
-    $stmt = executeQuery($sql, $data);
-    return $stmt->affected_rows;
+	switch($hari){
+		case 'Sun':
+			$hari_ini = "Minggu";
+		break;
+
+		case 'Mon':			
+			$hari_ini = "Senin";
+		break;
+
+		case 'Tue':
+			$hari_ini = "Selasa";
+		break;
+
+		case 'Wed':
+			$hari_ini = "Rabu";
+		break;
+
+		case 'Thu':
+			$hari_ini = "Kamis";
+		break;
+
+		case 'Fri':
+			$hari_ini = "Jumat";
+		break;
+
+		case 'Sat':
+			$hari_ini = "Sabtu";
+		break;
+		
+		default:
+			$hari_ini = "Tidak di ketahui";		
+		break;
+	}
+
+	return "<b>" .$hari_ini . "</b>";
+
 }
 
 
-
-function delete($table, $id)
-{
-    global $conn;
-    $sql = "DELETE FROM $table WHERE id=?";
-
-    $stmt = executeQuery($sql, ['id' => $id]);
-    return $stmt->affected_rows;
+function namahari($tanggalnya){
+    //fungsi mencari namahari
+    //format $tgl YYYY-MM-DD
+    //harviacode.com
+    $tgl=substr($tanggalnya,8,2);
+    $bln=substr($tanggalnya,5,2);
+    $thn=substr($tanggalnya,0,4);
+    $info=date('w', mktime(0,0,0,$bln,$tgl,$thn));
+    switch($info){
+        case '0': return "Minggu"; break;
+        case '1': return "Senin"; break;
+        case '2': return "Selasa"; break;
+        case '3': return "Rabu"; break;
+        case '4': return "Kamis"; break;
+        case '5': return "Jumat"; break;
+        case '6': return "Sabtu"; break;
+    };
 }
 
-
-function getPublishedPosts()
-{
-    global $conn;
-    $sql = "SELECT p.*, u.username FROM posts AS p JOIN users AS u ON p.user_id=u.id WHERE p.published=?";
-
-    $stmt = executeQuery($sql, ['published' => 1]);
-    $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-    return $records;
-}
-
-
-function getPostsByTopicId($topic_id)
-{
-    global $conn;
-    $sql = "SELECT p.*, u.username FROM posts AS p JOIN users AS u ON p.user_id=u.id WHERE p.published=? AND topic_id=?";
-
-    $stmt = executeQuery($sql, ['published' => 1, 'topic_id' => $topic_id]);
-    $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-    return $records;
-}
-
-
-
-function searchPosts($term)
-{
-    $match = '%' . $term . '%';
-    global $conn;
-    $sql = "SELECT 
-                p.*, u.username 
-            FROM posts AS p 
-            JOIN users AS u 
-            ON p.user_id=u.id 
-            WHERE p.published=?
-            AND p.title LIKE ? OR p.body LIKE ?";
-
-
-    $stmt = executeQuery($sql, ['published' => 1, 'title' => $match, 'body' => $match]);
-    $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-    return $records;
-}
+            
+?>
