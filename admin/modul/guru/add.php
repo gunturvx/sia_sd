@@ -6,7 +6,7 @@
           </div>
           <div class="row">
 
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
                       <h3 class="h4">Form Entry Guru</h3>

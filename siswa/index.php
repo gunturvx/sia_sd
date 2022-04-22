@@ -1,34 +1,25 @@
-<!-- Koneksi -->
-<?php include("../path.php"); ?>
 <?php
-session_start();
+@session_start();
  include '../app/database/db.php';
 
-if (!isset($_SESSION['admin'])) {
+if (!isset($_SESSION['siswa'])) {
 ?> <script>
     alert('Maaf ! Anda Belum Login !!');
-    window.location='index.php';
+    window.location='../user.php';
  </script>
 <?php
 }
  ?>
- <?php
-
-// jumlah siswa
-$jumlahSiswa = mysqli_num_rows(mysqli_query($con,"SELECT * FROM tb_siswa WHERE status=1 "));
-// jumlah guru
-$jumlahGuru = mysqli_num_rows(mysqli_query($con,"SELECT * FROM tb_guru WHERE status='Y' "));
-// jumlah mata pelajaran
-$jumlahMapel = mysqli_num_rows(mysqli_query($con,"SELECT * FROM tb_master_mapel"));
-// jumlah mata pelajaran
-$jumlahKelas = mysqli_num_rows(mysqli_query($con,"SELECT * FROM tb_mkelas"));
-
-$id_login = @$_SESSION['admin'];
 
 
-$sql = mysqli_query($con,"SELECT * FROM tb_admin
-WHERE id_admin = '$id_login'") or die(mysqli_error($con));
+   <?php
+$id_login = @$_SESSION['siswa'];
+$sql = mysqli_query($con,"SELECT * FROM tb_siswa
+	INNER JOIN tb_mkelas ON tb_siswa.id_mkelas=tb_mkelas.id_mkelas
+ WHERE tb_siswa.id_siswa = '$id_login'") or die(mysqli_error($con));
 $data = mysqli_fetch_array($sql);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,7 +52,7 @@ $data = mysqli_fetch_array($sql);
 
         <!-- Sidebar -->
         <!-- Header Dipanggil dari folder app/includes/header.php ( agar header sama dengan page yg lain) -->
-        <?php include(ROOT_PATH . "../admin/app/includes/sidebar.php"); ?> 
+        <?php include(ROOT_PATH . "../siswa/app/includes/sidebar.php"); ?> 
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -72,7 +63,7 @@ $data = mysqli_fetch_array($sql);
 
                 <!-- Topbar -->
                 <!-- Header Dipanggil dari folder app/includes/header.php ( agar header sama dengan page yg lain) -->
-                <?php include(ROOT_PATH . "../app/includes/header.php"); ?>  
+                <?php include(ROOT_PATH . "../guru/app/includes/header.php"); ?>  
                 <!-- End of Topbar -->
 
 
@@ -85,101 +76,45 @@ $data = mysqli_fetch_array($sql);
 				$page= @$_GET['page'];
 				$act = @$_GET['act'];
 
-				if ($page=='master') {
-					// kelas
-					if ($act=='kelas') {
-					include 'modul/master/kelas/data_kelas.php';
-					}elseif ($act=='delkelas') {
-					include 'modul/master/kelas/del.php';
-					// semster
-					}elseif ($act=='semester') {
-					include 'modul/master/semester/data.php'; 
-					}elseif ($act=='delsemester') {
-					include 'modul/master/semester/del.php';
-					}elseif ($act=='set_semester') {
-						include 'modul/master/semester/set.php';
-					}
-					// tahun ajaran
-					elseif ($act=='ta') {
-					include 'modul/master/ta/data.php'; 
-					}elseif ($act=='delta') {
-					include 'modul/master/ta/del.php';
-					}elseif($act=='set_ta'){
-						include 'modul/master/ta/set.php';
-						// mapel
-				}elseif ($act=='mapel') {
-					include 'modul/master/mapel/data.php'; 
-					}elseif ($act=='delmapel') {
-					include 'modul/master/mapel/del.php';
-					}					
-				}elseif ($page=='walas') {
+				if ($page=='absen') {
 					if ($act=='') {
-					 include 'modul/wakel/data.php';  	
-					}
-               
-               }elseif ($page=='kepsek') {
-           if ($act=='') {
-               include 'modul/kepsek/data.php'; 
-           }elseif ($act=='add') {
-                include 'modul/kepsek/add.php'; 
-           }elseif ($act=='edit') {
-               include 'modul/kepsek/edit.php'; 
-           }elseif ($act=='del') {
-                include 'modul/kepsek/del.php'; 
-           }elseif ($act=='proses') {
-                include 'modul/kepsek/proses.php'; 
-           }
-            }elseif ($page=='guru') {
-           if ($act=='') {
-               include 'modul/guru/data.php'; 
-           }elseif ($act=='add') {
-                include 'modul/guru/add.php'; 
-           }elseif ($act=='edit') {
-               include 'modul/guru/edit.php'; 
-           }elseif ($act=='del') {
-                include 'modul/guru/del.php'; 
-           }elseif ($act=='proses') {
-                include 'modul/guru/proses.php'; 
-           }
-        }elseif ($page=='siswa') {
-          if ($act=='') {
-               include 'modul/siswa/data.php'; 
-           }elseif ($act=='add') {
-                include 'modul/siswa/add.php'; 
-           }elseif ($act=='edit') {
-               include 'modul/siswa/edit.php'; 
-           }elseif ($act=='del') {
-                include 'modul/siswa/del.php'; 
-           }elseif ($act=='proses') {
-                include 'modul/siswa/proses.php'; 
-           }   
-        }
-            elseif ($page=='rekap') {
+						include 'modul/absen/absen_kelas.php';
+					}elseif ($act=='surat_view') {
+						include 'modul/absen/view_surat_izin.php';
+					}elseif ($act=='konfirmasi') {
+						include 'modul/absen/konfirmasi_izin.php';
+					}elseif ($act=='update') {
+						include 'modul/absen/absen_kelas_update.php';
+					}					
+				}elseif ($page=='rekap') {
 					if ($act=='') {
 						include 'modul/rekap/rekap_absen.php';
-					}elseif ($act='rekap-perbulan') {
-						include 'modul/rekap/rekap_perbulan.php';
+
 					}					
-		}elseif ($page=='jadwal') {
-			if ($act=='') {
-				include 'modul/jadwal/data_mengajar.php';
-			}elseif ($act=='add') {
-				include 'modul/jadwal/tambah.php';
-			}elseif ($act=='cancel') {
-				include 'modul/jadwal/cancel.php';
-			}					
-		}elseif ($page=='') {
-			include 'modul/home.php';
-		}else{
-			echo "<b>Tidak ada Halaman</b>";
-		}
+				}elseif ($page=='jadwal') {
+					if ($act=='') {
+						include 'modul/jadwal/jadwal_megajar.php';
+
+					}					
+				}elseif ($page=='akun') {
+					include 'modul/akun/akun.php';
+				}
+
+				elseif ($page=='') {
+					include 'modul/home.php';
+				}else{
+					echo "<b>Tidak ada Halaman</b>";
+				}
+
 
 				 ?>
+
+
 				<!-- end -->
+
+
 				
 			</div>
-            </div>
-            <!-- End of Main Content -->
 
         </div>
         <!-- End of Content Wrapper -->
@@ -279,8 +214,7 @@ $data = mysqli_fetch_array($sql);
       <div class="modal-body">
       	<div class="form-group">
       		<label>Nama Lengkap</label>
-      		<input type="text" name="nama" class="form-control" value="<?=$data['nama_lengkap'] ?>">  
-      		<input type="hidden" name="id" value="<?=$data['id_admin'] ?>">       		
+      		<input type="text" name="nama" class="form-control" value="<?=$data['nama_guru'] ?>">       		
       	</div>   
       	<div class="form-group">
       		<label>Email</label>
@@ -313,7 +247,7 @@ $data = mysqli_fetch_array($sql);
                         if ($sqlEdit) {
                              echo "<script>
                         alert('Sukses ! Data berhasil diperbarui');
-                        window.location='dashboard.php';
+                        window.location='index.php';
                         </script>";  
                         }
 					}
@@ -389,41 +323,3 @@ $data = mysqli_fetch_array($sql);
 </body>
 
 </html>
-
-<script>
-// Set new default font family and font color to mimic Bootstrap's default styling
-Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-Chart.defaults.global.defaultFontColor = '#858796';
-
-// Pie Chart Example
-var ctx = document.getElementById("myPieChart");
-var myPieChart = new Chart(ctx, {
-  type: 'doughnut',
-  data: {
-    labels: ["Jumlah Data Siswa", "Jumlah Mata Pelajaran", "Jumlah Data Guru", "Jumlah Data Kelas"],
-    datasets: [{
-      data: [<?= $jumlahSiswa; ?>, <?= $jumlahMapel; ?>, <?= $jumlahGuru; ?>,  <?= $jumlahKelas; ?>],
-      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#FFCC00'],
-      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#FFCC00'],
-      hoverBorderColor: "rgba(234, 236, 244, 1)",
-    }],
-  },
-  options: {
-    maintainAspectRatio: false,
-    tooltips: {
-      backgroundColor: "rgb(255,255,255)",
-      bodyFontColor: "#858796",
-      borderColor: '#dddfeb',
-      borderWidth: 1,
-      xPadding: 15,
-      yPadding: 15,
-      displayColors: false,
-      caretPadding: 10,
-    },
-    legend: {
-      display: false
-    },
-    cutoutPercentage: 80,
-  },
-});
-</script>

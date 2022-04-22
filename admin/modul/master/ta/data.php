@@ -9,7 +9,7 @@
               <div class="card">
                 <div class="card-header">
                   <div class="card-title">
-                     <a href="" class="btn btn-primary btn-sm text-white" data-toggle="modal" data-target="#addTahun Pelajaran"><i class="fa fa-plus"></i> Tambah</a>
+                     <a href="#" class="btn btn-primary btn-sm text-white" data-toggle="modal" data-target="#addTahun Pelajaran"><i class="fa fa-plus"></i>Tambah</a>
                   </div>
                 </div>
                 <div class="card-body">
@@ -19,9 +19,9 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>TAHUN PELALAJARAN</th>
-                            <th>STATUS</th>
-                            <th>OPSI</th>
+                            <th>Tahun Pelajaran</th>
+                            <th>Status</th>
+                            <th>Opsi</th>
                         </tr>
                     </thead>  
                     <tbody>

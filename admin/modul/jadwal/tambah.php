@@ -10,10 +10,10 @@ $semAktif = mysqli_fetch_array(mysqli_query($con,"SELECT * FROM tb_semester WHER
 					</center>
 					</div>
 					<div class="row">
-						<div class="col-md-8">
+						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<div class="card-title">Form Elements</div>
+									<div class="card-title">Tambah Jadwal Mengajar</div>
 								</div>
 								<div class="card-body">
 									<form action="" method="post">

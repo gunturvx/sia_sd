@@ -43,12 +43,12 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#sidebarLayouts" data-toggle="collapse" data-target="#jadwalmengajar"
+                <a class="nav-link collapsed" href="#sidebarLayouts" data-toggle="collapse" data-target="#sidebarLayouts"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-book"></i>
                     <span>Jadwal Mengajar</span>
                 </a>
-                <div id="jadwalmengajar" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="sidebarLayouts" class="collapse" aria-labelledby="headingTwo" data-parent="#sidebarLayouts">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="?page=jadwal&act=add">Tambah Jadwal</a>
                         <a class="collapse-item" href="?page=jadwal">Daftar Mengajar</a>
