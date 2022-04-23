@@ -1,3 +1,4 @@
+<?php include("../path.php"); ?>
 <?php
 @session_start();
  include '../app/database/db.php';
@@ -63,11 +64,11 @@ $data = mysqli_fetch_array($sql);
 
                 <!-- Topbar -->
                 <!-- Header Dipanggil dari folder app/includes/header.php ( agar header sama dengan page yg lain) -->
-                <?php include(ROOT_PATH . "../guru/app/includes/header.php"); ?>  
+                <?php include(ROOT_PATH . "../siswa/app/includes/header.php"); ?>  
                 <!-- End of Topbar -->
 
 
-                <div class="main-panel">
+				<div class="main-panel">
 			<div class="content">
 
 				<!-- Halaman dinamis -->
@@ -76,30 +77,20 @@ $data = mysqli_fetch_array($sql);
 				$page= @$_GET['page'];
 				$act = @$_GET['act'];
 
-				if ($page=='absen') {
+				if ($page=='izin') {
 					if ($act=='') {
-						include 'modul/absen/absen_kelas.php';
+						include 'modul/izin/ajukan_izin.php';
 					}elseif ($act=='surat_view') {
-						include 'modul/absen/view_surat_izin.php';
-					}elseif ($act=='konfirmasi') {
-						include 'modul/absen/konfirmasi_izin.php';
-					}elseif ($act=='update') {
-						include 'modul/absen/absen_kelas_update.php';
+						include 'modul/izin/view_surat_izin.php';
 					}					
-				}elseif ($page=='rekap') {
+				}elseif ($page=='kehadiran') {
 					if ($act=='') {
-						include 'modul/rekap/rekap_absen.php';
+						include 'modul/absen/kehadiran.php';
 
 					}					
-				}elseif ($page=='jadwal') {
-					if ($act=='') {
-						include 'modul/jadwal/jadwal_megajar.php';
-
-					}					
-				}elseif ($page=='akun') {
-					include 'modul/akun/akun.php';
+				}elseif ($page=='change') {
+					include 'modul/user/ganti_password.php';
 				}
-
 				elseif ($page=='') {
 					include 'modul/home.php';
 				}else{
@@ -111,12 +102,8 @@ $data = mysqli_fetch_array($sql);
 
 
 				<!-- end -->
-
-
 				
 			</div>
-
-        </div>
         <!-- End of Content Wrapper -->
 
     </div>
