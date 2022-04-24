@@ -56,10 +56,10 @@
                 </div>
             </li>
 
-            <li class="nav-item">
+            <l i class="nav-item">
                 <a class="nav-link collapsed" href="#guru" data-toggle="collapse" data-target="#dataguru"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-user"></i>
+                    <i class="fas fa-chalkboard-teacher"></i>
                     <span>Data Guru</span>
                 </a>
                 <div id="dataguru" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
@@ -80,6 +80,20 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="?page=siswa&act=add">Tambah Siswa</a>
                         <a class="collapse-item" href="?page=siswa">Daftar Siswa</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#pengumuman" data-toggle="collapse" data-target="#datapengumuman"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-bullhorn"></i>
+                    <span>Pengumuman</span>
+                </a>
+                <div id="datapengumuman" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="?page=pengumuman&act=add">Tambah Pengumuman</a>
+                        <a class="collapse-item" href="?page=pengumuman">Daftar Pengumuman</a>
                     </div>
                 </div>
             </li>

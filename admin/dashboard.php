@@ -153,7 +153,20 @@ $data = mysqli_fetch_array($sql);
            }elseif ($act=='proses') {
                 include 'modul/siswa/proses.php'; 
            }   
-        }
+        }elseif ($page=='pengumuman') {
+			if ($act=='') {
+				 include 'modul/pengumuman/data.php'; 
+			 }elseif ($act=='add') {
+				  include 'modul/pengumuman/add.php'; 
+			 }elseif ($act=='edit') {
+				 include 'modul/pengumuman/edit.php'; 
+			 }elseif ($act=='del') {
+				  include 'modul/pengumuman/del.php'; 
+			 }elseif ($act=='proses') {
+				  include 'modul/pengumuman/proses.php'; 
+			 }   
+		  }
+		
             elseif ($page=='rekap') {
 					if ($act=='') {
 						include 'modul/rekap/rekap_absen.php';
