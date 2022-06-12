@@ -1,21 +1,16 @@
-<div class="page-inner">
+<div class="container-fluid">
           <div class="page-header">
           <center>
-            <h4 class="page-title">Jadwal</h4>
+            <h4 class="page-title">Data Jadwal</h4>
           </center>
           </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <div class="card-title">
-                     <a href="?page=jadwal&act=add" class="btn btn-primary btn-sm text-white"><i class="fa fa-plus"></i> Tambah</a>
-                  </div>
-                </div>
-
-                    <div class="card-body">
-                      <div class="table-responsive">
-                        <table id="basic-datatables" class="display table table-striped table-hover" >
+          <div class="card shadow mb-4">
+    <div class="card-header py-3">
+    <a href="?page=jadwal&act=add" class="btn btn-primary btn-sm text-white"><i class="fa fa-plus"></i> Tambah</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                           <thead>
                             <tr>
                               <th>No.</th>

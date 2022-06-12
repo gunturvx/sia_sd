@@ -1,25 +1,20 @@
-<div class="page-inner">
+<div class="container-fluid">
           <div class="page-header">
             <center>
-            <h4 class="page-title">Tahun Pelajaran</h4>
+            <h4 class="page-title">Tahun Ajaran</h4>
             </center>
           </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <div class="card-title">
-                     <a href="#" class="btn btn-primary btn-sm text-white" data-toggle="modal" data-target="#addTahun Pelajaran"><i class="fa fa-plus"></i>Tambah</a>
-                  </div>
-                </div>
-                <div class="card-body">
-                    <div class="card-body">
-                      <div class="table-responsive">
-                 <table class="table table-striped">
+          <div class="card shadow mb-4">
+    <div class="card-header py-3">
+    <a href="" class="btn btn-primary btn-sm text-white" data-toggle="modal" data-target="#addTA"><i class="fa fa-plus"></i> Tambah</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Tahun Pelajaran</th>
+                            <th>No</th>
+                            <th>Tahun Ajaran</th>
                             <th>Status</th>
                             <th>Opsi</th>
                         </tr>
@@ -129,8 +124,9 @@
 </div>
 </div>
 
+
 <!-- Modal -->
-<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="addTahun Pelajaran" class="modal fade" style="display: none;">
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="addTA" class="modal fade" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
              <div class="modal-header">
@@ -169,5 +165,6 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
 
 

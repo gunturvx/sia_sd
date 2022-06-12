@@ -42,7 +42,7 @@ WHERE tb_mengajar.id_guru='$data[id_guru]' AND tb_thajaran.status=1 ");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard Admin SD Negeri Cipari 02</title>
+    <title>Dashboard Guru SD Negeri Cipari 02</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -95,28 +95,55 @@ WHERE tb_mengajar.id_guru='$data[id_guru]' AND tb_thajaran.status=1 ");
 						include 'modul/absen/konfirmasi_izin.php';
 					}elseif ($act=='update') {
 						include 'modul/absen/absen_kelas_update.php';
-					}					
+					}
+
 				}elseif ($page=='rekap') {
 					if ($act=='') {
 						include 'modul/rekap/rekap_absen.php';
 
-					}					
+					}	
+
 				}elseif ($page=='jadwal') {
 					if ($act=='') {
 						include 'modul/jadwal/jadwal_megajar.php';
 
-					}					
+					}	
+
 				}elseif ($page=='akun') {
 					include 'modul/akun/akun.php';
-				}
+					
+				}elseif ($page=='pengumuman') {
+					include 'modul/pengumuman/pengumuman.php';
 
-				elseif ($page=='') {
-					include 'modul/home.php';
-				}else{
-					echo "<b>Tidak ada Halaman</b>";
-				}
-
-
+				}elseif ($page=='nilai') {
+					if ($act=='') {
+						include 'modul/nilai/data.php'; 
+					}elseif ($act=='add') {
+						 include 'modul/nilai/add.php'; 
+					}elseif ($act=='proses') {
+						 include 'modul/nilai/proses.php'; 
+					}
+				}elseif ($page=='presensi') {
+					if ($act=='') {
+						include 'modul/presensi/absensi.php'; 
+					}elseif ($act=='detailabsensi') {
+						include 'modul/presensi/detailabsensi.php'; 
+					}elseif ($act=='editpresensi') {
+						include 'modul/presensi/detaileditabsensi.php'; 
+					}elseif ($act=='delpresensi') {
+							include 'modul/presensi/hapusabsensi.php'; 
+					}elseif ($act=='simpanpresensi') {
+							include 'modul/presensi/simpanabsensi.php'; 
+					}elseif ($act=='rekapabsensi') {
+							include 'modul/presensi/rekapabsensi.php'; 
+					}elseif ($act=='detailabsensi') {
+					include 'modul/presensi/detailabsensi.php';
+					}
+				}elseif ($page=='') {
+							include 'modul/home.php';
+					}else{
+							echo "<center><b>Tidak ada Halaman</b><center>";
+					}
 				 ?>
 
 

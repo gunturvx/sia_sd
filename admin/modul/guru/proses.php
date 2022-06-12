@@ -5,7 +5,7 @@ if (isset($_POST['saveGuru'])) {
     $pass= sha1($_POST['nip']);
 
 		$sumber = @$_FILES['foto']['tmp_name'];
-		$target = '../assets/img/user/';
+		$target = '../img/user/';
 		$nama_gambar = @$_FILES['foto']['name'];
 		$pindah = move_uploaded_file($sumber, $target.$nama_gambar);
 		if ($pindah) {
@@ -38,7 +38,7 @@ if (isset($_POST['saveGuru'])) {
   	 $pass= sha1($_POST['email']);
 		$gambar = @$_FILES['foto']['name'];
 		if (!empty($gambar)) {
-		move_uploaded_file($_FILES['foto']['tmp_name'],"../assets/img/user/$gambar");
+		move_uploaded_file($_FILES['foto']['tmp_name'],"../img/user/$gambar");
 		$ganti = mysqli_query($con,"UPDATE tb_guru SET foto='$gambar' WHERE id_guru='$_POST[id]' ");
 		}
 		$editGuru= mysqli_query($con,"UPDATE tb_guru SET nama_guru='$_POST[nama]',email='$_POST[email]' WHERE id_guru='$_POST[id]' ");

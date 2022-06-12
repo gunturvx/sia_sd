@@ -46,7 +46,7 @@ include 'app/database/db.php';
                                     </div>
                                     <form method="post" action="" class="login100-form validate-form"> 
                                         <div class="form-group wrap-input100 validate-input">
-                                            <input type="text" class="form-control form-control-user input100"  name="username" placeholder="Masukan NIP">
+                                            <input type="text" class="form-control form-control-user input100"  name="username" placeholder="Masukan NIP / NIS">
                                         </div>
                                         <div class="form-group wrap-input100 validate-input">
                                         <span class="btn-show-pass">
@@ -61,7 +61,6 @@ include 'app/database/db.php';
                                                 <option>Level</option>
                                                 <option value="1">Guru</option>
                                                 <option value="2">Siswa</option>
-                                                <option value="3">Wali Kelas</option>
                                             </select>
                                         </div>
                                         <div class="login100-form-bgbtn"></div>

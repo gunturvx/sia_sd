@@ -23,58 +23,17 @@ foreach ($kelasMengajar as $d)
 						
 					</div>
 				</div> -->
-<div class="page-inner">
+<div class="container-fluid">
 
     <div class="page-header">
         <!-- <h4 class="page-title">KELAS (<?=strtoupper($d['nama_kelas']) ?> )</h4> -->
-        <ul class="breadcrumbs" style="font-weight: bold;">
-            <li class="nav-home">
-                <a href="#">
-                    <i class="flaticon-home"></i>
-                </a>
-            </li>
-            <li class="separator">
-                <i class="flaticon-right-arrow"></i>
-            </li>
-            <li class="nav-item">
-                <a href="#">KELAS (<?=strtoupper($d['nama_kelas']) ?> )</a>
-            </li>
-            <li class="separator">
-                <i class="flaticon-right-arrow"></i>
-            </li>
-            <li class="nav-item">
-                <a href="#"><?=strtoupper($d['mapel']) ?></a>
-            </li>
-        </ul>
 
     </div>
 
-
-    <div class="row">
-
-        <div class="col-md-8 col-xs-12">
-            <?php 
-							// tampilkan jika da yg izin hari ini
-								// tampilkan sataurs izin
-							$today = date('Y-m-d'); // tanggal sekarang
-							$queryIzin = mysqli_query($con,"SELECT * FROM tb_siswa 
-
-								WHERE  tb_siswa.id_mkelas=".$d['id_mkelas']);
-								foreach ($queryIzin as $si) { ?>
-
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <!-- <span aria-hidden="true">&times;</span> -->
-                </button>
-                <strong class="text-warning">( <?=$si['nama_siswa'] ?> )</strong> Mengajukan permintaan izin pada hari
-                ini <b> <a href="?page=absen&act=surat_view&izin=<?=$si['id_izin'];?>"> Lihat permintaan ?</a></b>
-            </div>
-
-            <?php } ?>
-
-            <?php 
+        <div class="col-md-12 col-xs-12">
+         <?php 
 								// dapatkan pertemuan terakhir di tb izin
-								$last_pertemuan = mysqli_query($con,"SELECT * FROM _logabsensi WHERE id_mengajar='$_GET[pelajaran]' GROUP BY pertemuan_ke ORDER BY pertemuan_ke DESC LIMIT 1  ");
+								$last_pertemuan = mysqli_query($con,"SELECT * FROM tb_presensi WHERE id_mengajar='$_GET[pelajaran]' GROUP BY pertemuan_ke ORDER BY pertemuan_ke DESC LIMIT 1  ");
 								$cekPertemuan = mysqli_num_rows($last_pertemuan);
 								$jml = mysqli_fetch_array($last_pertemuan);
 
@@ -84,10 +43,7 @@ foreach ($kelasMengajar as $d)
 								 $pertemuan = 1;
 									
 								}
-
-
 								?>
-
             <div class="card">
                 <div class="card-body">
                     <form action="" method="post">
@@ -105,11 +61,10 @@ foreach ($kelasMengajar as $d)
 
                         <table>
                             <?php 
-
 										// tampilakan data siswa berdasarkan kelas yang dipilih
 										$tgl_hari_ini = date('Y-m-d');
 
-										$siswa = mysqli_query($con,"SELECT * FROM _logabsensi INNER JOIN tb_siswa ON _logabsensi.id_siswa=tb_siswa.id_siswa WHERE  _logabsensi.tgl_absen='$tgl_hari_ini' AND _logabsensi.id_mengajar='$_GET[pelajaran]' ORDER BY _logabsensi.id_siswa ASC  ");
+										$siswa = mysqli_query($con,"SELECT * FROM tb_presensi INNER JOIN tb_siswa ON tb_presensi.id_siswa=tb_siswa.id_siswa WHERE  tb_presensi.tgl_absen='$tgl_hari_ini' AND tb_presensi.id_mengajar='$_GET[pelajaran]' ORDER BY tb_presensi.id_siswa ASC  ");
 										$jumlahSiswa = mysqli_num_rows($siswa);
 								
 										foreach ($siswa as $i =>$s) {?>
@@ -121,7 +76,8 @@ foreach ($kelasMengajar as $d)
 														echo "<span class='text-danger'>Belum Absen</span>";
 													} ?>
                                     <input type="hidden" name="id_siswa-<?=$i;?>" value="<?=$s['id_siswa'] ?>">
-                                    <div class="form-check">
+                                    <div class="status mt-0" >
+													<div class="form-check" style="display: flex; justify-content: space-between; margin-bottom: 10px;">
 
                                         <label class="form-check-label">
                                             <input name="ket-<?=$i;?>" class="form-check-input" type="checkbox"
@@ -141,47 +97,24 @@ foreach ($kelasMengajar as $d)
                                         </label>
                                         <label class="form-check-label">
                                             <input name="ket-<?=$i;?>" class="form-check-input" type="checkbox"
-                                                value="T" <?php if ($s['ket']=='T') { echo"checked";}?>>
-                                            <span class="form-check-sign">T</span>
-                                        </label>
-
-                                        <label class="form-check-label">
-                                            <input name="ket-<?=$i;?>" class="form-check-input" type="checkbox"
                                                 value="A" <?php if ($s['ket']=='A') { echo"checked";}?>>
                                             <span class="form-check-sign">A</span>
                                         </label>
-
-
-
-                                        <label class="form-check-label">
-                                            <input name="ket-<?=$i;?>" class="form-check-input" type="checkbox"
-                                                value="C" <?php if ($s['ket']=='C') { echo"checked";}?>>
-                                            <span class="form-check-sign">C</span>
-                                        </label>
-
-
-
-
                                     </div>
                                 </td>
                             </tr>
                             <?php } ?>
                         </table>
-
-
-
-
-                </div>
-                <!-- <input type="submit" name="absen" class="btn btn-info"> -->
-                <center>
+                                        <center>
                     <button type="submit" name="update" class="btn btn-success">
                         <i class="fa fa-check"></i> Update Absensi
                     </button>
-
-                    <a href="javascript:history.back()" class="btn btn-default"><i class="fas fa-arrow-circle-left"></i>
-                        Kembali</a>
-
+                    
+                    <a href="javascript:history.back()" class="btn btn-default"><i class="fas fa-arrow-circle-left"></i> Kembali</a>
                 </center>
+                </div>
+                <!-- <input type="submit" name="absen" class="btn btn-info"> -->
+
             </div>
             </form>
 
@@ -204,7 +137,7 @@ foreach ($kelasMengajar as $d)
 											print_r ($_POST);
 											echo "</pre>";
 
-											$updte_absen = mysqli_query($con,"UPDATE _logabsensi SET ket='$ket' WHERE id_mengajar='$pelajaran' AND id_siswa='$id_siswa' AND tgl_absen='$hari_sekarang' ");
+											$updte_absen = mysqli_query($con,"UPDATE tb_presensi SET ket='$ket' WHERE id_mengajar='$pelajaran' AND id_siswa='$id_siswa' AND tgl_absen='$hari_sekarang' ");
 
 										if ($updte_absen) {
 

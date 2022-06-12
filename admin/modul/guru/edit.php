@@ -2,7 +2,7 @@
 
 $edit = mysqli_query($con,"SELECT * FROM tb_guru WHERE id_guru='$_GET[id]' ");
 foreach ($edit as $d)?>
-<div class="page-inner">
+<div class="container-fluid">
           <div class="page-header">
 		  <center>
             <h4 class="page-title">Guru</h4>
@@ -12,7 +12,7 @@ foreach ($edit as $d)?>
                 <div class="col-lg-12">
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Form Edit Guru</h3>
+                      <h5> Edit Guru</h5>
                     </div>
                     <div class="card-body">
 						<form action="?page=guru&act=proses" method="post" enctype="multipart/form-data">
@@ -47,7 +47,7 @@ foreach ($edit as $d)?>
 
 							<div class="form-group">
 								<p>
-									<img src="../assets/img/user/<?=$d['foto']; ?>" class="img-fluid rounded-circle kotak" style="height: 65px; width: 65px;">
+									<img src="../img/user/<?=$d['foto']; ?>" class="img-fluid rounded-circle kotak" style="height: 65px; width: 65px;">
 								</p>
 								<label>Foto</label>
 								<input type="file" name="foto">

@@ -6,7 +6,7 @@ if (isset($_POST['savePengumuman'])) {
 	$id_pengumuman = $_POST['id_pengumuman'];
 	$judul = $_POST['judul'];
 	$isi_pengumuman = $_POST['isi_pengumuman'];
-	$date = $_POST['date'];
+	$date = $_POST['tanggal'];
 
 
 $save = mysqli_query($con,"INSERT INTO tb_pengumuman VALUES (NULL,'$judul','$isi_pengumuman','$date') ");
@@ -32,7 +32,7 @@ $save = mysqli_query($con,"INSERT INTO tb_pengumuman VALUES (NULL,'$judul','$isi
 
 		}elseif (isset($_POST['editPengumuman'])) {
 
-		$edit= mysqli_query($con,"UPDATE tb_pengumuman SET judul='$_POST[judul]',isi_pengumuman='$_POST[isi_pengumuman]',date='$_POST[date]' WHERE id_pengumuman='$_POST[id_pengumuman]' ");
+		$edit= mysqli_query($con,"UPDATE tb_pengumuman SET judul='$_POST[judul]',isi_pengumuman='$_POST[isi_pengumuman]',tanggal='$_POST[tanggal]' WHERE id_pengumuman='$_POST[id_pengumuman]' ");
 
 		if ($edit) {
 			echo "

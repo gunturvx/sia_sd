@@ -2,7 +2,7 @@
 
 $edit = mysqli_query($con,"SELECT * FROM tb_pengumuman WHERE id_pengumuman='$_GET[id]' ");
 foreach ($edit as $d)?>
-<div class="page-inner">
+<div class="container-fluid">
           <div class="page-header">
 		  <center>
             <h4 class="page-title">Pengumuman</h4>
@@ -24,12 +24,12 @@ foreach ($edit as $d)?>
 
 							<div class="form-group">
 								<label>Isi Pengumuman</label>
-								<textarea class="form-control" name="isi_pengumuman" placeholder="Isi Pengumuman" id="floatingTextarea2" style="height: 100px" value="<?=$d['isi_pengumuman'] ?>"></textarea>							
+								<textarea class="form-control" name="isi_pengumuman" placeholder="Isi Pengumuman" id="floatingTextarea2" style="height: 100px"><?=$d['isi_pengumuman'] ?></textarea>									
 							</div>
 
 							<div class="form-group">
 								<label>Tanggal</label>
-								<input type="date" name="date" class="form-control w-25" value="<?=$d['date'] ?>">							
+								<input type="date" name="tanggal" class="form-control w-25" value="<?=$d['tanggal'] ?>">							
 							</div>
 
 

@@ -41,7 +41,7 @@
 							
             <?php
 
-            $sql = mysqli_query($con, "SELECT * FROM tb_pengumuman ORDER BY date DESC LIMIT 1");
+            $sql = mysqli_query($con, "SELECT * FROM tb_pengumuman ORDER BY tanggal DESC LIMIT 1");
 
             while ($data = mysqli_fetch_assoc($sql)) {
 
@@ -50,12 +50,12 @@
 			<h5 class="card-title"><?=$data['judul'];?></h5>
 				<p class="card-text"><?=$data['isi_pengumuman'];?></p>
 				<p><small class="text-muted"><?php
-                                                        $date = date('l, d F Y', strtotime(str_replace('-', '/', $data['date'])));
+                                                        $date = date('l, d F Y', strtotime(str_replace('-', '/', $data['tanggal'])));
 
 
                                                         echo $date;
                                                         ?></small></p>
-				<a href="#" class="btn btn-primary">Lihat seluruh pengumuman</a>					
+				<a href="?page=pengumuman" class="btn btn-primary">Lihat seluruh pengumuman</a>					
 			</div>
 		</div>
 		<?php } ?>

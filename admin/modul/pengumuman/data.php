@@ -1,27 +1,23 @@
-<div class="page-inner">
+<div class="container-fluid">
           <div class="page-header">
           <center>
             <h4 class="page-title">Pengumuman</h4>
           </center>
           </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <div class="card-title">
-                     <a href="?page=pengumuman&act=add" class="btn btn-primary btn-sm text-white"><i class="fa fa-plus"></i> Tambah Pengumuman</a>
-                  </div>
-                </div>
-                <div class="card-body">
-                  
-                      <div class="table-responsive">
-                   <table id="basic-datatables" class="display table table-striped table-hover" >
+          <div class="card shadow mb-4">
+    <div class="card-header py-3">
+    <a href="?page=pengumuman&act=add" class="btn btn-primary btn-sm text-white"><i class="fa fa-plus"></i> Tambah Pengumuman</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Judul</th>
-                            <th>Isi Pengumuman</th>
+                            <th style="width:30%">Isi Pengumuman</th>
                             <th>Tanggal</th>
+                            <th>Opsi</th>
                         </tr>
                     </thead>  
                     <tbody>
@@ -34,8 +30,9 @@
                           
                             <td><?=$p['judul'];?></td>
                             <td><?=$p['isi_pengumuman'];?></td>
-                            <td><?=$p['date'];?></td>
+                            <td><?=$p['tanggal'];?></td>
                               <td>
+                                
               <a class="btn btn-info btn-sm" href="?page=pengumuman&act=edit&id=<?=$p['id_pengumuman'] ?>"><i class="far fa-edit"></i></a>
               <a class="btn btn-danger btn-sm" onclick="return confirm('Yakin Hapus Data ??')" href="?page=pengumuman&act=del&id=<?=$p['id_pengumuman'] ?>"><i class="fas fa-trash"></i>
               </a>

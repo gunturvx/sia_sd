@@ -22,7 +22,7 @@ foreach ($kelasMengajar as $d)
 						
 					</div>
 				</div> -->
-<div class="page-inner">
+				<div class="container-fluid">
 
 	<div class="page-header">
 <center>

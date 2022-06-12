@@ -1,7 +1,7 @@
-<div class="page-inner">
+<div class="container-fluid">
           <div class="page-header">
           <center>
-            <h4 class="page-title">Pengumuman</h4>
+            <h4 class="page-title">Data Pengumuman</h4>
           </center>
           </div>
           <div class="row">
@@ -24,7 +24,7 @@
 
 							<div class="form-group">
 								<label>Tanggal</label>
-								<input type="date" name="date" class="form-control w-25">						
+								<input type="date" name="tanggal" class="form-control w-25">						
 							</div>
 
 							<div class="form-group">

@@ -29,6 +29,12 @@
                     <i class="fas fa-clipboard-check"></i>
                     <span>Presensi</span></a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="?page=pengumuman">
+                    <i class="fas fa-bullhorn"></i>
+                    <span>Pengumuman</span></a>
+            </li>
            
 
             <!-- Divider -->

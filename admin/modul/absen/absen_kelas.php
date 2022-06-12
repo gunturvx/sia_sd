@@ -21,7 +21,7 @@ foreach ($kelasMengajar as $d)
 						
 					</div>
 				</div> -->
-<div class="page-inner">
+<div class="container-fluid">
 
 	<div class="page-header">
 		<center>
@@ -183,7 +183,7 @@ foreach ($kelasMengajar as $d)
 											$ket = $_POST['ket-'.$i];
 
 
-											$cekAbsesnHariIni = mysqli_num_rows(mysqli_query($con,"SELECT * FROM _logabsensi WHERE tgl_absen='$today' AND id_mengajar='$pelajaran' AND id_siswa='$id_siswa' "));
+											$cekAbsesnHariIni = mysqli_num_rows(mysqli_query($con,"SELECT * FROM tb_presensi WHERE tgl_absen='$today' AND id_mengajar='$pelajaran' AND id_siswa='$id_siswa' "));
 
 											if ($cekAbsesnHariIni > 0) {
 
@@ -208,7 +208,7 @@ foreach ($kelasMengajar as $d)
 							
 											}else{
 
-												$insert = mysqli_query($con,"INSERT INTO _logabsensi VALUES (NULL,'$pelajaran','$id_siswa','$today','$ket')");
+												$insert = mysqli_query($con,"INSERT INTO tb_presensi VALUES (NULL,'$pelajaran','$id_siswa','$today','$ket')");
 
 										if ($insert) {
 

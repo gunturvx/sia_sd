@@ -1,37 +1,39 @@
-<div class="page-inner">
-					<div class="page-header">
-                        <center>
-						<h4 class="page-title">Data Kelas</h4>
-                        </center>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<div class="card">
-								<div class="card-header">
-									<div class="card-title">
-										 <a href="" class="btn btn-primary btn-sm text-white" data-toggle="modal" data-target="#addKelas"><i class="fa fa-plus"></i> Tambah</a>
-									</div>
-								</div>
-								<div class="card-body">
-									
-									<table class="table table-sm">
-										<thead>
-											<tr>
-												<th scope="col">#</th>
-												<th scope="col">Kode Kelas</th>
-												<th scope="col">Nama Kelas</th>
-												<th scope="col">Opsi</th>
-											</tr>
-										</thead>
-										<tbody>
-                        <?php 
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+<!-- Page Heading -->
+<div class="page-header">
+            <center>
+            <h4 class="page-title">Data Kelas</h4>
+            </center>
+          </div>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+    <a href="" class="btn btn-primary btn-sm text-white" data-toggle="modal" data-target="#addKelas"><i class="fa fa-plus"></i> Tambah</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Kode Kelas</th>
+                        <th>Nama Kelas</th>
+                        <th>Opsi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php 
                         $no=1;
                         $kelas = mysqli_query($con,"SELECT * FROM tb_mkelas");
                         foreach ($kelas as $k) {?>
-                        <tr>
-                            <td><b><?=$no++;?>.</b></td>                            
-                            <td><?=$k['kd_kelas'];?></td>
-                            <td><?=$k['nama_kelas'];?></td>
+                    <tr>
+                        <td><b><?=$no++;?>.</b></td>                            
+                        <td><?=$k['kd_kelas'];?></td>
+                        <td><?=$k['nama_kelas'];?></td>
                             <td>
                                 
                             <a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit<?=$k['id_mkelas'] ?>"><i class="far fa-edit"></i> Edit</a>
@@ -153,3 +155,5 @@
 </div>
 </div>
 </div>
+
+

@@ -36,7 +36,7 @@ foreach ($izin as $d)
 		<tr>
 			<td>Gender</td>
 			<td>:</td>
-			<td><?=$d['jk'];?></td>
+			<td><?=$d['jenis_kelamin'];?></td>
 		</tr>
 
 	</table>

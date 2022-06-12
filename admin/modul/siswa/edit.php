@@ -2,7 +2,7 @@
 
 $edit = mysqli_query($con,"SELECT * FROM tb_siswa WHERE id_siswa='$_GET[id]' ");
 foreach ($edit as $d)?>
-<div class="page-inner">
+<div class="container-fluid">
           <div class="page-header">
           <center>
             <h4 class="page-title">Siswa</h4>
@@ -12,7 +12,7 @@ foreach ($edit as $d)?>
                 <div class="col-lg-12">
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
-                      <h3 class="h4">Form Edit Siswa</h3>
+                      <h5> Edit Siswa</h5>
                     </div>
                     <div class="card-body">
 
@@ -42,7 +42,7 @@ foreach ($edit as $d)?>
     <td>Jenis Kelamin </td>
     <td>:</td>
     <td>
-    	<select name="jk" class="form-control">
+    	<select name="jenis_kelamin" class="form-control">
     		<option value="L">Laki-laki</option>
     		<option value="P">Perempuan</option>
     	</select>

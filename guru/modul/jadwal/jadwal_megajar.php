@@ -1,24 +1,16 @@
-
-<div class="page-inner">
-
-	<div class="page-header">
-<center>
-<h4 class="page-title">Jadwal</h4> 
-</center>
-</div>
-
-					
-<div class="row mt-4">
-
-		<?php 
+ <!-- Begin Page Content -->
+<?php 
 		foreach ($mengajar as $jd) {
 		?>
-	<div class="col-md-5 col-xs-12">
+ <div class="container-fluid">
 
-		<div class="alert alert-info alert-dismissible" role="alert">
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
-		<strong><h3><?=$jd['mapel']; ?></h3></strong>
-		<hr>
+	<!-- Kotak Identitas Sekolah -->
+	<div class="col-xl-12 col-lg-7">
+		<div class="card shadow mb-4">
+			<div class="card-header py-3">
+				<h6 class="m-0 font-weight-bold text-primary"><?=$jd['mapel']; ?></h6>
+			</div>
+			<div class="card-body">
 		<ul>
 			<li>
 				Hari : <?=$jd['hari']; ?>
@@ -33,20 +25,18 @@
 				Kelas : <?=$jd['nama_kelas']; ?>
 			</li>
 		</ul>
-		<hr>
-		<a href="?page=absen&pelajaran=<?=$jd['id_mengajar'] ?> " class="btn btn-default btn-block text-left">
+		<a href="?page=absen&pelajaran=<?=$jd['id_mengajar'] ?> " class="btn btn-primary btn-block text-left">
 			<i class="fas fa-clipboard-check"></i>
 			Isi Absen
 		</a>
-		<a href="?page=rekap&pelajaran=<?=$jd['id_mengajar'] ?> " class="btn btn-secondary btn-block text-left">
+		<a href="?page=rekap&pelajaran=<?=$jd['id_mengajar'] ?> " class="btn btn-success btn-block text-left">
 			<i class="fas fa-list-alt"></i>
 			Rekap Absen
-		</a>
-		</div>	
-</div>
-	<?php } ?>
+		</a>			
+			</div>
+		</div>
 
+	</div>
 </div>
-	<a href="javascript:history.back()" class="btn btn-default"><i class="fas fa-arrow-circle-left"></i> Kembali</a>
 </div>
-					
+		<?php } ?>

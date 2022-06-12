@@ -3,7 +3,7 @@
 <div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">Pengaturan Akun</h4>
+									<h5 class="card-title">Pengaturan Akun</h5>
 								</div>
 								<div class="card-body">
 									<ul class="nav nav-pills nav-secondary nav-pills-no-bd" id="pills-tab-without-border" role="tablist">
@@ -25,7 +25,7 @@
 												<input name="pass1" type="text" class="form-control" placeholder="Password Baru">
 											</div>
 											<div class="form-group">									
-										<button name="changePassword" type="submit" class="btn btn-success btn-block">Ganti Password</button>
+										<button name="changePassword" type="submit" class="btn btn-primary btn-block">Ganti Password</button>
 									</div>
 								
 									</form>
@@ -141,5 +141,3 @@
 								</div>
 							</div>
 						</div>
-
-	<a href="javascript:history.back()" class="btn btn-default btn-block mb-1"><i class="fas fa-arrow-circle-left"></i> Kembali</a>

@@ -76,7 +76,7 @@ foreach ($kelasMengajar as $d)
 
 						<?php 
 								// dapatkan pertemuan terakhir di tb izin
-								$last_pertemuan = mysqli_query($con,"SELECT * FROM _logabsensi WHERE id_mengajar='$_GET[pelajaran]' GROUP BY pertemuan_ke ORDER BY pertemuan_ke DESC LIMIT 1  ");
+								$last_pertemuan = mysqli_query($con,"SELECT * FROM tb_presensi WHERE id_mengajar='$_GET[pelajaran]' GROUP BY pertemuan_ke ORDER BY pertemuan_ke DESC LIMIT 1  ");
 								$cekPertemuan = mysqli_num_rows($last_pertemuan);
 								$jml = mysqli_fetch_array($last_pertemuan);
 
@@ -236,7 +236,7 @@ foreach ($kelasMengajar as $d)
 											$ket = $_POST['ket-'.$i];
 
 
-											$cekAbsesnHariIni = mysqli_num_rows(mysqli_query($con,"SELECT * FROM _logabsensi WHERE tgl_absen='$today' AND id_mengajar='$pelajaran' AND id_siswa='$id_siswa' "));
+											$cekAbsesnHariIni = mysqli_num_rows(mysqli_query($con,"SELECT * FROM tb_presensi WHERE tgl_absen='$today' AND id_mengajar='$pelajaran' AND id_siswa='$id_siswa' "));
 
 											if ($cekAbsesnHariIni > 0) {
 
@@ -261,7 +261,7 @@ foreach ($kelasMengajar as $d)
 							
 											}else{
 
-												$insert = mysqli_query($con,"INSERT INTO _logabsensi VALUES (NULL,'$pelajaran','$id_siswa','$today','$ket','$pertemuan')");
+												$insert = mysqli_query($con,"INSERT INTO tb_presensi VALUES (NULL,'$pelajaran','$id_siswa','$today','$ket','$pertemuan')");
 
 										if ($insert) {
 

@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
 
                 <div class="sidebar-brand-text mx-3">SDN Cipari 02</div>
             </a>
@@ -39,19 +39,15 @@
                 </a>
                 <div id="sidebarLayouts" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                    <ul class="nav nav-collapse">
 									<?php
 
 
 									foreach ($mengajar as $dm) { ?>
-									<li>
-										<a href="?page=absen&pelajaran=<?=$dm['id_mengajar'] ?> ">
-											<span class="sub-item"><!-- <?=strtoupper($dm['mapel']); ?> -->KELAS (<?=strtoupper($dm['nama_kelas']); ?>)</span>
-										</a>
-									</li>
+<a class="collapse-item" href="?page=absen&pelajaran=<?=$dm['id_mengajar'] ?> "><span class="sub-item"><!-- <?=strtoupper($dm['mapel']); ?> -->KELAS (<?=strtoupper($dm['nama_kelas']); ?>)</span>
+									
 								<?php } ?>
-								</ul>
                 </div>
+                                    </div>
             </li>
 
             <li class="nav-item">
@@ -61,20 +57,31 @@
                     <span>Rekap Absen</span>
                 </a>
                 <div id="rekapAbsen" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                    <ul class="nav nav-collapse">
-									<?php
+            <div class="bg-white py-2 collapse-inner rounded">
+                <?php 
+                foreach ($mengajar as $dm) { ?>
+                <a class="collapse-item" href="?page=rekap&kelas=<?=$dm['id_mengajar'] ?>"><span class="sub-item"><!-- <?=strtoupper($dm['mapel']); ?> -->KELAS (<?=strtoupper($dm['nama_kelas']); ?>)</span></a>
+                <?php } ?>
+            </div>
+        </div>
+            </li>
+            <!-- <li class="nav-item">
+        <a class="nav-link" href="?page=presensi">
+          <i class="fas fa-fw fa-user-check"></i>
+          <span>Absensi</span></a>
+      </li> -->
 
+            
+            <li class="nav-item">
+                <a class="nav-link" href="?page=pengumuman">
+                    <i class="fas fa-bullhorn"></i>
+                    <span>Pengumuman</span></a>
+            </li>
 
-									foreach ($mengajar as $dm) { ?>
-									<li>
-										<a href="?page=rekap&pelajaran=<?=$dm['id_mengajar'] ?> ">
-											<span class="sub-item"><!-- <?=strtoupper($dm['mapel']); ?> -->KELAS (<?=strtoupper($dm['nama_kelas']); ?>)</span>
-										</a>
-									</li>
-								<?php } ?>
-								</ul>
-                </div>
+            <li class="nav-item">
+                <a class="nav-link" href="?page=nilai">
+                <i class="fas fa-sticky-note"></i>
+                    <span>Nilai</span></a>
             </li>
 
             <!-- Divider -->

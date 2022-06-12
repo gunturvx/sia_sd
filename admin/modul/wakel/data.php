@@ -1,26 +1,19 @@
-<div class="page-inner">
+<div class="container-fluid">
                     <div class="page-header">
                     <center>
-                        <h4 class="page-title">Wali Kelas</h4>
+                        <h4 class="page-title">Data Wali Kelas</h4>
                     </center>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="card-title">
-                                         <a href="" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Tambah</a>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-
-
-
-
-                 <table class="table table-hover table-sm">
+                    <div class="card shadow mb-4">
+    <div class="card-header py-3">
+    <a href="" class="btn btn-primary btn-sm text-white" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Tambah</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>No</th>
                             <th>Kelas</th>
                             <th>Nama Wali Kelas</th>
                             <th>Opsi</th>
@@ -43,7 +36,8 @@
                             <td>
                                 
                             <a href="" class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit<?=$k['id_walikelas'] ?>"><i class="far fa-edit"></i> Edit</a>
-                            <a class="btn btn-danger btn-sm" onclick="return confirm('Yakin Hapus Data ??')" href="?page=master&act=delwakel&id=<?=$k['id_walikelas'] ?>"><i class="fas fa-trash"></i> Del</a>
+                            <a class="btn btn-danger btn-sm" onclick="return confirm('Yakin Hapus Data ??')" href="?page=walas&act=delwakel&id=<?=$k['id_walikelas'] ?>"><i class="fas fa-trash"></i> Del</a>
+                            
 
                             <!-- Modal -->
 <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit<?=$k['id_walikelas'] ?>" class="modal fade" style="display: none;">

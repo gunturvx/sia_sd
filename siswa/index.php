@@ -33,7 +33,7 @@ $data = mysqli_fetch_array($sql);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard Admin SD Negeri Cipari 02</title>
+    <title>Dashboard Siswa SD Negeri Cipari 02</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -90,6 +90,8 @@ $data = mysqli_fetch_array($sql);
 					}					
 				}elseif ($page=='change') {
 					include 'modul/user/ganti_password.php';
+				}elseif ($page=='pengumuman') {
+				include 'modul/pengumuman/pengumuman.php';
 				}
 				elseif ($page=='') {
 					include 'modul/home.php';

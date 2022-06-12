@@ -1,18 +1,22 @@
 <!-- Koneksi -->
 <?php include("../path.php"); ?>
+
+<!-- Sesion Login -->
 <?php
 session_start();
- include '../app/database/db.php';
+include '../app/database/db.php';
 
 if (!isset($_SESSION['admin'])) {
-?> <script>
+?> 
+<script>
     alert('Maaf ! Anda Belum Login !!');
     window.location='index.php';
- </script>
+</script>
 <?php
 }
- ?>
- <?php
+?>
+
+<?php
 
 // jumlah siswa
 $jumlahSiswa = mysqli_num_rows(mysqli_query($con,"SELECT * FROM tb_siswa WHERE status=1 "));
@@ -20,16 +24,16 @@ $jumlahSiswa = mysqli_num_rows(mysqli_query($con,"SELECT * FROM tb_siswa WHERE s
 $jumlahGuru = mysqli_num_rows(mysqli_query($con,"SELECT * FROM tb_guru WHERE status='Y' "));
 // jumlah mata pelajaran
 $jumlahMapel = mysqli_num_rows(mysqli_query($con,"SELECT * FROM tb_master_mapel"));
-// jumlah mata pelajaran
+// jumlah Kelas
 $jumlahKelas = mysqli_num_rows(mysqli_query($con,"SELECT * FROM tb_mkelas"));
-
+// Sesion Admin
 $id_login = @$_SESSION['admin'];
 
 
-$sql = mysqli_query($con,"SELECT * FROM tb_admin
-WHERE id_admin = '$id_login'") or die(mysqli_error($con));
+$sql = mysqli_query($con,"SELECT * FROM tb_admin WHERE id_admin = '$id_login'") or die(mysqli_error($con));
 $data = mysqli_fetch_array($sql);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,10 +63,8 @@ $data = mysqli_fetch_array($sql);
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <!-- Header Dipanggil dari folder app/includes/header.php ( agar header sama dengan page yg lain) -->
+        <!-- Sidebar Dipanggil dari folder admin/app/includes/sidebar.php -->
         <?php include(ROOT_PATH . "../admin/app/includes/sidebar.php"); ?> 
-        <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -115,20 +117,9 @@ $data = mysqli_fetch_array($sql);
 				}elseif ($page=='walas') {
 					if ($act=='') {
 					 include 'modul/wakel/data.php';  	
-					}
-               
-               }elseif ($page=='kepsek') {
-           if ($act=='') {
-               include 'modul/kepsek/data.php'; 
-           }elseif ($act=='add') {
-                include 'modul/kepsek/add.php'; 
-           }elseif ($act=='edit') {
-               include 'modul/kepsek/edit.php'; 
-           }elseif ($act=='del') {
-                include 'modul/kepsek/del.php'; 
-           }elseif ($act=='proses') {
-                include 'modul/kepsek/proses.php'; 
-           }
+					}elseif ($act=='delwakel') {
+						include 'modul/wakel/del.php';
+						}	
             }elseif ($page=='guru') {
            if ($act=='') {
                include 'modul/guru/data.php'; 
@@ -140,6 +131,18 @@ $data = mysqli_fetch_array($sql);
                 include 'modul/guru/del.php'; 
            }elseif ($act=='proses') {
                 include 'modul/guru/proses.php'; 
+           }
+		   }elseif ($page=='presensi') {
+           if ($act=='') {
+               include 'modul/presensi/absensi.php'; 
+           }elseif ($act=='detailabsensi') {
+                include 'modul/presensi/detailabsensi.php'; 
+           }elseif ($act=='editpresensi') {
+               include 'modul/presensi/detaileditabsensi.php'; 
+           }elseif ($act=='delpresensi') {
+                include 'modul/presensi/hapusabsensi.php'; 
+           }elseif ($act=='simpanpresensi') {
+                include 'modul/presensi/simpanabsensi.php'; 
            }
         }elseif ($page=='siswa') {
           if ($act=='') {
@@ -172,7 +175,27 @@ $data = mysqli_fetch_array($sql);
 						include 'modul/rekap/rekap_absen.php';
 					}elseif ($act='rekap-perbulan') {
 						include 'modul/rekap/rekap_perbulan.php';
-					}					
+					}	
+				}elseif ($page=='laporan') {
+				if ($act=='') {
+					include 'modul/laporan/data.php';
+				}elseif ($act=='cetak') {
+						 include '../laporan/fpdf/laporan.php'; }
+				
+				}elseif ($page=='nilai') {
+					if ($act=='') {
+						include 'modul/nilai/data.php'; 
+					}elseif ($act=='add') {
+						 include 'modul/nilai/add.php'; 
+					}elseif ($act=='edit') {
+						include 'modul/nilai/edit.php'; 
+					}elseif ($act=='del') {
+						 include 'modul/nilai/del.php'; 
+					}elseif ($act=='proses') {
+						 include 'modul/nilai/proses.php'; 
+					}
+					
+					
 		}elseif ($page=='jadwal') {
 			if ($act=='') {
 				include 'modul/jadwal/data_mengajar.php';
@@ -183,6 +206,7 @@ $data = mysqli_fetch_array($sql);
 			}					
 		}elseif ($page=='') {
 			include 'modul/home.php';
+			
 		}else{
 			echo "<b>Tidak ada Halaman</b>";
 		}

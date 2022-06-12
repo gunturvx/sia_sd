@@ -3,10 +3,10 @@ $taAktif = mysqli_fetch_array(mysqli_query($con,"SELECT * FROM tb_thajaran WHERE
 $semAktif = mysqli_fetch_array(mysqli_query($con,"SELECT * FROM tb_semester WHERE status=1 "));
 
  ?>
-<div class="page-inner">
+<div class="container-fluid">
 					<div class="page-header">
 					<center>
-						<h4 class="page-title">Jadwal</h4>
+						<h4 class="page-title">Data Jadwal</h4>
 					</center>
 					</div>
 					<div class="row">
